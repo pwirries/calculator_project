@@ -1,0 +1,83 @@
+.wrapper {
+    display: grid;
+    grid-template-rows: 2fr repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    border: 1px solid #000;
+    width: 600px;
+    height: 700px;
+    grid-auto-flow: rows;
+    background-color: black;
+  }
+  
+  .displayArea {
+    display: grid;
+    grid-area: 1 / 1 / span 1 / span 5;
+    border: 1px solid #ddd;
+    margin: 5px;
+    background-color: #ccc;
+  }
+  
+  .btn {
+    display: grid;
+    grid-gap:10px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: yellow;
+    justify-items: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 5px;
+  }
+  
+  .btn:hover {
+    border: 2px solid #fff;
+  }
+  .numberContainer {
+    display:grid;
+    grid-area: 2 / 1 / span 4 / span 3;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  .numbers {
+    display: grid;
+    border: 0.5px solid black;
+    border-radius: 10px;
+    align-items: center;
+    justify-items: center;
+    background-color: #bbb;
+    margin: 5px;
+    font-weight: bold;
+    font-size: 30px;
+  
+  }
+  
+  
+  #plus {
+    grid-area: 4 / 4 / span 2 / span 1;
+  }
+  
+  #minus {
+    grid-area: 3 / 4 / span 1 / span 1;
+  }
+  
+  #multiply {
+    grid-area: 4 / 5 / span 1 / span 1;
+  }
+  
+  #divide {
+    grid-area: 3 / 5 / span 1 / span 1;
+  }
+  
+  #evaluate {
+    grid-area: 5 / 5 / span 1 / span 1;
+  }
+  
+  #backspace {
+    grid-area: 2 / 4 / span 1 / span 1;
+  }
+  
+  #clear {
+    grid-area: 2 / 5 / span 1 / span 1;
+  }
