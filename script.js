@@ -1,4 +1,8 @@
 let input = [];
+let inputNum = '';
+const operations = ["+", "-", "/", "*"]
+const display = document.querySelector('.displayArea');
+display.innerText = ''
 createNumKeys();
 
 
@@ -50,24 +54,57 @@ buttons.forEach((button)=>{ button.addEventListener('click', (e) => {
     if (e.target.innerText == "C") {
       clearInput();
     }
+    else if (e.target.innerText == "=") {
+        input.push(inputNum);
+        inputNum = '';
+        operate();
+    }
+    else if (operations.includes(e.target.innerText)) {
+        if (num == '') {
+            alert("You must enter a number before an operation");
+        }
+        else {
+            input.push(inputNum);
+            input.push(e.target.innerText);
+            inputNum = '';
+            updateDisplay();
+        }
+    }
     else {
-    input.push(e.target.innerText);
-    updateDisplay();
+        inputNum = inputNum + e.target.innerText;
+        updateDisplay();
     }
   })});
 
 }
 
 function updateDisplay() {
-  const display = document.querySelector('.displayArea');
-  display.innerText = input.toString().replace(new RegExp(",", 'g'), "");
+  display.innerText = input.toString().replace(new RegExp(",", 'g'), "") + inputNum;
 }
 
 function clearInput() {
   input = [];
+  inputNum = '';
   updateDisplay();
 }
 
+
+function operate() {
+    //while (input.length > 0) {
+        check1 = input.indexOf("*");
+        check2 = input.indexOf("/");
+        console.log(check1);
+        console.log(check2);
+
+        if (check1 < check2 || (check1 > 0 && check2 < 0)) {
+            console.log(input[check1 - 1]);
+            console.log(input[check1 + 1]);
+            newVal = input[check1 - 1] * input[check1 + 1];
+            input.splice(check1-1, 3, newVal);
+            updateDisplay()
+        }
+    //}
+}
 //add elements to string until operation button is pressed
 //add string to array
 //search for operation and grab number before and after (indexOf('+'))
