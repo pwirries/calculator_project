@@ -90,20 +90,66 @@ function clearInput() {
 
 
 function operate() {
-    //while (input.length > 0) {
-        check1 = input.indexOf("*");
-        check2 = input.indexOf("/");
-        console.log(check1);
-        console.log(check2);
+    while (input.length > 2) {
+        let m = input.indexOf("*");
+        let d = input.indexOf("/");
+        let a = input.indexOf("+");
+        let s = input.indexOf("-");
 
-        if (check1 < check2 || (check1 > 0 && check2 < 0)) {
-            console.log(input[check1 - 1]);
-            console.log(input[check1 + 1]);
-            newVal = input[check1 - 1] * input[check1 + 1];
-            input.splice(check1-1, 3, newVal);
-            updateDisplay()
+        if (d > 0 || m > 0) {
+          if (d < 0) {
+            multiply(m)
+          }
+          else if (m < 0) {
+            divide(d)
+          }
+          else if (m < d) {
+            multiply(m)
+          }
+          else {
+            divide(d)
+          }
         }
-    //}
+        else if (a > 0 || s > 0) {
+          if (a < 0) {
+            subtract(s)
+          }
+          else if (s < 0) {
+            add(a)
+          }
+          else if (a < s) {
+            add(a)
+          }
+          else {
+            subtract(s)
+          }
+        }
+    }
+}
+
+
+function multiply(m) {
+  newVal = input[m - 1] * input[m + 1];
+  input.splice(m-1, 3, newVal);
+  updateDisplay()
+}
+
+function divide(d) {
+  newVal = input[d - 1] / input[d + 1];
+  input.splice(d - 1, 3, newVal);
+  updateDisplay()
+}
+
+function add(a) {
+  newVal = Number(input[a - 1]) + Number(input[a + 1]);
+  input.splice(a - 1, 3, newVal);
+  updateDisplay();
+}
+
+function subtract(s) {
+  newVal = input[s - 1] - input[s + 1];
+  input.splice(s - 1, 3, newVal);
+  updateDisplay();
 }
 //add elements to string until operation button is pressed
 //add string to array
